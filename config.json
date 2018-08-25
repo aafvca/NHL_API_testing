@@ -1,0 +1,21 @@
+ {
+  "DEFAULT": {
+    "TEAMS_URL": "https://statsapi.web.nhl.com/api/v1/teams/",
+    "PEOPLE_URL": "https://statsapi.web.nhl.com/api/v1/people/"
+  },
+  "TEST1": {
+    "MTL_ROSTER_1617": "/8?expand=team.roster&season=20162017",
+    "MTL_ROSTER_1718": "/8?expand=team.roster&season=20172018",
+    "API_ROSTER_ID": "teams[].roster.roster[].person.id",
+    "MIN_NUMBER_PLAYERS": 10
+  },
+  "TEST2": {
+    "MTL_STATS_1617": "/stats?stats=statsSingleSeason&season=20162017",
+    "MTL_STATS_1718": "/stats?stats=statsSingleSeason&season=20172018"
+  },
+  "TEST3": {
+    "API_CURRENT_TEAM": "people[].currentTeam.name",
+    "API_TEAMS_POSITION": "teams[].roster.roster[].position.name",
+    "API_PEOPLE_POSITION": "people[].primaryPosition.name"
+  }
+}
