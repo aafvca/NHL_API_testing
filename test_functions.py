@@ -37,9 +37,17 @@ def single_from_nested(nested_list):
     for element in nested_list:
         if len(element) == 0:
             empty = True
-            element.append(-1)
+            element.append('N/A')
         for points in element:
             single_list.append(points)
     if empty == True:
         print('Warning, there are some empty values in the API, maybe a bug?')
     return single_list
+
+# Function to calculate the team api_points, exclude N/A's
+def calculate_team_points(points_list):
+    number_of_points = 0
+    for points in points_list:
+        if type(points) == int:
+            number_of_points = number_of_points + points
+    return number_of_points

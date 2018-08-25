@@ -38,3 +38,7 @@ nested_roster_1718_points = tf.create_list_multiple(url_people,players_in_both,u
 # Create singles list from nested
 roster_1617_points = tf.single_from_nested(nested_roster_1617_points)
 roster_1718_points = tf.single_from_nested(nested_roster_1718_points)
+
+# Calculate team points
+team_points_1617 = tf.calculate_team_points(roster_1617_points)
+team_points_1718 = tf.calculate_team_points(roster_1718_points)
