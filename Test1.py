@@ -9,4 +9,3 @@ if len(tp.players_in_both) >= min_num_players:
     print('TEST PASS '  + str(len(tp.players_in_both)) + ' players were in both seasons')
 else:
     print('TEST FAIL')
-#print(tp.players_in_both)

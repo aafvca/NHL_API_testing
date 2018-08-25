@@ -11,7 +11,8 @@
   },
   "TEST2": {
     "MTL_STATS_1617": "/stats?stats=statsSingleSeason&season=20162017",
-    "MTL_STATS_1718": "/stats?stats=statsSingleSeason&season=20172018"
+    "MTL_STATS_1718": "/stats?stats=statsSingleSeason&season=20172018",
+    "API_POINTS": "stats[].splits[].stat.points"
   },
   "TEST3": {
     "API_CURRENT_TEAM": "people[].currentTeam.name",

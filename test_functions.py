@@ -1,4 +1,4 @@
-import json
+import json, jmespath
 from urllib.request import urlopen
 
 print('Functions loaded')
@@ -23,6 +23,23 @@ def find_players(roster1,roster2):
             player_list.append(player)
     return player_list
 
-#Function to create a list from one request
-
 #Function to create a list from several requests
+def create_list_multiple(url_prefix,id_list,url_suffix,api_exp):
+    stat_list = []
+    for player in id_list:
+        data = get_response(url_prefix + str(player) + url_suffix)
+        stat_list.append(api_exp.search(data))
+    return stat_list
+
+# Function to create a single from nested lists and check if some values are empty
+def single_from_nested(nested_list):
+    single_list = []
+    for element in nested_list:
+        if len(element) == 0:
+            empty = True
+            element.append(-1)
+        for points in element:
+            single_list.append(points)
+    if empty == True:
+        print('Warning, there are some empty values in the API, maybe a bug?')
+    return single_list
