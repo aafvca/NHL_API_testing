@@ -6,7 +6,7 @@
   "TEST1": {
     "MTL_ROSTER_1617": "/8?expand=team.roster&season=20162017",
     "MTL_ROSTER_1718": "/8?expand=team.roster&season=20172018",
-    "API_ROSTER_ID": "teams[].roster.roster[].person.id",
+    "API_TEAMS_ROSTER_ID": "teams[].roster.roster[].person.id",
     "MIN_NUMBER_PLAYERS": 10
   },
   "TEST2": {
@@ -15,7 +15,7 @@
     "API_POINTS": "stats[].splits[].stat.points"
   },
   "TEST3": {
-    "API_CURRENT_TEAM": "people[].currentTeam.name",
+    "API_PEOPLE_CURRENT_TEAM": "people[].currentTeam.name",
     "API_TEAMS_POSITION": "teams[].roster.roster[].position.name",
     "API_PEOPLE_POSITION": "people[].primaryPosition.name"
   }

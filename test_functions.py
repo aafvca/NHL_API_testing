@@ -27,6 +27,7 @@ def find_players(roster1,roster2):
 def create_list_multiple(url_prefix,id_list,url_suffix,api_exp):
     stat_list = []
     for player in id_list:
+        #print(url_prefix + str(player) + url_suffix)
         data = get_response(url_prefix + str(player) + url_suffix)
         stat_list.append(api_exp.search(data))
     return stat_list
