@@ -2,15 +2,15 @@ import test_functions as tf
 import test_procedures as tp
 import messages as mg
 
-
+log_info = {'currentTeam from people': tp.people_current_team, 'positions from team': tp.teams_position, 'positions from people': tp.people_position }
 not_canadien = 0
 not_same_team = 0
 tc1_msg_label = 'currentTeam'
 tc2_msg_label = 'position'
-TC3A_label = 'TEST CASE 3A'
+TC3A_label = 'Test_Case_3A'
 t3a_pass_msg = 'All players have Montréal Canadiens as team'
 t3a_fail_msg = 'Some players have different or no team in people currentTeam'
-TC3B_label = 'TEST CASE 3B'
+TC3B_label = 'Test_Case_3B'
 t3b_pass_msg = 'Both functions showed the same position for every player'
 t3b_fail_msg = 'There are differences in positions between the two functions'
 
@@ -38,12 +38,15 @@ for player in tp.people_current_team:
         not_canadien = not_canadien + 1
 
 if not_canadien != 0:
-    tf.test_pass(TC3A_label, t3a_fail_msg)
+    tf.test_fail(TC3A_label, t3a_fail_msg)
+    tf.log_creation(TC3A_label,log_info)
 else:
     tf.test_pass(TC3A_label, t3b_pass_msg)
+    #tf.log_creation(TC3A_label,log_info)
 
 # Test 3b
 # Are positions returned by teams are the same as people?
+print('Executing ' + TC3B_label)
 
 if tp.t3_response_state_position == True:
     print(mg.response_ok)
@@ -58,7 +61,7 @@ else:
 if tp.t3_empty_value_position == True:
     print(mg.empty_value)
 
-print('Validating TEST 3B')
+print('Validating ' + TC3B_label)
 
 counter = len(tp.teams_position) - 1
 
@@ -69,5 +72,7 @@ while counter >= 0:
 
 if not_same_team == 0:
     tf.test_pass(TC3B_label, t3b_pass_msg)
+    #tf.log_creation(TC3B_label,log_info)
 else:
-    tf.test_pass(TC3B_label, t3b_pass_msg)
+    tf.test_fail(TC3B_label, t3b_fail_msg)
+    tf.log_creation(TC3B_label,log_info)

@@ -3,7 +3,7 @@ from urllib.request import urlopen
 
 print("Loading config ...")
 executed = False
-separator = '==========================================================================='
+separator = '==============================================================================='
 
 # Function to load the config
 def load_config(config_file):
@@ -69,4 +69,12 @@ def test_pass(tc_label, pass_string):
 def test_fail(tc_label, fail_string):
     print(separator)
     print(tc_label + ' FAIL: ' + fail_string)
+    print('Check '+ tc_label+'.log for more info')
     print(separator)
+
+# Fnction to create logfiles for verification, needs a list of variables to collect
+def log_creation(tc_label,log_info):
+    f = open(tc_label + '.log', 'w+')
+    for key,val in log_info.items():
+        f.write(key + " => " + str(val) + "\n")
+    f.close()

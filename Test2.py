@@ -2,16 +2,16 @@ import test_functions as tf
 import test_procedures as tp
 import messages as mg
 
-
+log_info = {'roster points 1716': tp.roster_1617_points, 'roster points 1718': tp.roster_1718_points, 'team points 1617': tp.team_points_1617, 'team points 1718': tp.team_points_1718}
 improve_count = 0
 noImprove_count = 0
 counter = len(tp.roster_1617_points) - 1
 season_1617 = '2016-2017'
 season_1718 = '2017-2018'
-TC2A_label = 'TEST CASE 2A'
+TC2A_label = 'Test_Case_2A'
 t2a_pass_msg = 'All players improved'
 t2a_fail_msg = ' players had more points in season 2016-2017'
-TC2B_label = 'TEST CASE 2B'
+TC2B_label = 'Test_Case_2B'
 t2b_pass_msg = 'The team improved from last season, more points in season 2017-2018'
 t2b_fail_msg = 'The team did not improve, more points in season 2016-2017'
 
@@ -59,8 +59,10 @@ while counter >= 0:
 
 if noImprove_count > 0:
     tf.test_fail(TC2A_label, str(noImprove_count) + t2a_fail_msg)
+    tf.log_creation(TC2A_label,log_info)
 else:
     tf.test_pass(TC2A_label, t2a_pass_msg)
+    #tf.log_creation(TC1_label,log_info)
 
 #Test2b Has the team improved?
 
@@ -68,5 +70,7 @@ print('Validating ' + TC2B_label)
 
 if tp.team_points_1617 < tp.team_points_1718:
     tf.test_pass(TC2B_label, t2b_pass_msg)
+    #tf.log_creation(TC1_label,log_info)
 else:
     tf.test_fail(TC2B_label, t2b_fail_msg)
+    tf.log_creation(TC2B_label,log_info)    

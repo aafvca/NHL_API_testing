@@ -4,13 +4,13 @@ import messages as mg
 
 config = tf.load_config('config.json')
 
-log_info = [tp.roster_1617, tp.roster_1718,tp.players_in_both]
+log_info = {'roster 2016-2017': tp.roster_1617, 'roster 2017-2018': tp.roster_1718, 'players in both seasons' : tp.players_in_both}
 min_num_players = config['TEST1']['MIN_NUMBER_PLAYERS']
 tpass_msg = str(len(tp.players_in_both)) + ' players were in both seasons'
 tfail_msg = 'Less than 10 players ere in both seasons'
 season_1617 = '2016-2017'
 season_1718 = '2017-2018'
-TC1_label = 'TEST CASE 1'
+TC1_label = 'Test_Case_1'
 
 print('Executing ' + TC1_label)
 
@@ -29,5 +29,7 @@ print('Validating ' + TC1_label)
 
 if len(tp.players_in_both) >= min_num_players:
     tf.test_pass(TC1_label, tpass_msg)
+    #tf.log_creation(TC1_label,log_info)
 else:
     tf.test_fail(TC1_label, tfail_msg)
+    tf.log_creation(TC1_label,log_info)
