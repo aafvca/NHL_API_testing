@@ -8,8 +8,15 @@ noImprove_count = 0
 counter = len(tp.roster_1617_points) - 1
 season_1617 = '2016-2017'
 season_1718 = '2017-2018'
+TC2A_label = 'TEST CASE 2A'
+t2a_pass_msg = 'All players improved'
+t2a_fail_msg = ' players had more points in season 2016-2017'
+TC2B_label = 'TEST CASE 2B'
+t2b_pass_msg = 'The team improved from last season, more points in season 2017-2018'
+t2b_fail_msg = 'The team did not improve, more points in season 2016-2017'
 
-print('Executing TEST CASE 2')
+
+print('Executing ' + TC2A_label)
 
 if tp.t2_response_state_1617 and tp.t2_response_state_1718 == True:
     print(mg.response_ok)
@@ -40,7 +47,7 @@ else:
 
 # Test2a Have all the players in the 2016-2017 and 2017-2018 roster improved?
 
-print('Validating TEST 2A')
+print('Validating ' + TC2A_label)
 
 while counter >= 0:
     if type(tp.roster_1617_points[counter]) and type(tp.roster_1718_points[counter])  == int: #Some goalies have no points
@@ -51,23 +58,15 @@ while counter >= 0:
     counter = counter - 1
 
 if noImprove_count > 0:
-    print(tp.separator)
-    print('Test 2A FAIL: Only ' + str(noImprove_count) + ' players had more points in season 2016-2017')
-    print(tp.separator)
+    tf.test_fail(TC2A_label, str(noImprove_count) + t2a_fail_msg)
 else:
-    print(tp.separator)
-    print('Test 2A PASS: All players improved')
-    print(tp.separator)
+    tf.test_pass(TC2A_label, t2a_pass_msg)
 
 #Test2b Has the team improved?
 
-print('Validating TEST 2B')
+print('Validating ' + TC2B_label)
 
 if tp.team_points_1617 < tp.team_points_1718:
-    print(tp.separator)
-    print('Test 2B PASS: The team improved from last season, more points in season 2017-2018')
-    print(tp.separator)
+    tf.test_pass(TC2B_label, t2b_pass_msg)
 else:
-    print(tp.separator)
-    print('Test 2B FAIL: The team did not improve, more points in season 2016-2017')
-    print(tp.separator)
+    tf.test_fail(TC2B_label, t2b_fail_msg)

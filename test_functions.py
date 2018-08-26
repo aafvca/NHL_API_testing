@@ -3,6 +3,7 @@ from urllib.request import urlopen
 
 print("Loading config ...")
 executed = False
+separator = '==========================================================================='
 
 # Function to load the config
 def load_config(config_file):
@@ -57,3 +58,15 @@ def calculate_team_points(points_list):
             number_of_points = number_of_points + points
     executed = True
     return number_of_points, executed
+
+# Function to create the PASS message
+def test_pass(tc_label, pass_string):
+    print(separator)
+    print(tc_label + ' PASS: ' + pass_string)
+    print(separator)
+
+# Function to create the FAIL message
+def test_fail(tc_label, fail_string):
+    print(separator)
+    print(tc_label + ' FAIL: ' + fail_string)
+    print(separator)

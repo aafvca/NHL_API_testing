@@ -4,11 +4,15 @@ import messages as mg
 
 config = tf.load_config('config.json')
 
+log_info = [tp.roster_1617, tp.roster_1718,tp.players_in_both]
 min_num_players = config['TEST1']['MIN_NUMBER_PLAYERS']
+tpass_msg = str(len(tp.players_in_both)) + ' players were in both seasons'
+tfail_msg = 'Less than 10 players ere in both seasons'
 season_1617 = '2016-2017'
 season_1718 = '2017-2018'
+TC1_label = 'TEST CASE 1'
 
-print('Executing TEST CASE 1')
+print('Executing ' + TC1_label)
 
 if tp.t1_response_state_1617 and tp.t1_response_state_1718 == True:
     print(mg.response_ok)
@@ -21,13 +25,9 @@ else:
 if tp.t1_found_players == True:
     print("Searching for players in both rosters")
 
-print('Validating TEST 1')
+print('Validating ' + TC1_label)
 
 if len(tp.players_in_both) >= min_num_players:
-    print(tp.separator)
-    print('TEST 1 PASS: '  + str(len(tp.players_in_both)) + ' players were in both seasons')
-    print(tp.separator)
+    tf.test_pass(TC1_label, tpass_msg)
 else:
-    print(tp.separator)
-    print('TEST 1 FAIL: Less than 10 players ere in both seasons')
-    print(tp.separator)
+    tf.test_fail(TC1_label, tfail_msg)

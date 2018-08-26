@@ -15,7 +15,6 @@ api_points =jmespath.compile(config['TEST2']['API_POINTS'])
 api_people_currentTeam = jmespath.compile(config['TEST3']['API_PEOPLE_CURRENT_TEAM'])
 api_teams_position = jmespath.compile(config['TEST3']['API_TEAMS_POSITION'])
 api_people_position = jmespath.compile(config['TEST3']['API_PEOPLE_POSITION'])
-separator = '==========================================================================='
 
 # For TEST1
 # Get the API response for both rosters 2016-2017 and 2017-2018
