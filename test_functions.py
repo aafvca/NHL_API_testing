@@ -1,4 +1,5 @@
 import json, jmespath
+import messages as mg
 from urllib.request import urlopen
 
 print("Loading config ...")
@@ -68,6 +69,11 @@ def response_state(response_state1, response_state2, msg_response_ok, msg_respon
             print(msg_response_nok_preffix + season1  + msg_response_nok_suffix)
         else:
             print(msg_response_nok_preffix + season_1718  + msg_response_nok_suffix)
+
+# Function to find empty values in the json response in two messages
+def empty_value(empty1, empty2):
+    if empty1 or empty == True:
+        print(mg.empty_value)
 
 # Function to create the PASS message
 def test_pass(tc_label, pass_string):
