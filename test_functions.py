@@ -59,6 +59,16 @@ def calculate_team_points(points_list):
     executed = True
     return number_of_points, executed
 
+# Function to verify the response message in two GET requests and send ok/not ok message
+def response_state(response_state1, response_state2, msg_response_ok, msg_response_nok_preffix, msg_response_nok_suffix, season1, season2):
+    if response_state1 and response_state2 == True:
+        print(msg_response_ok)
+    else:
+        if response_state1 == False:
+            print(msg_response_nok_preffix + season1  + msg_response_nok_suffix)
+        else:
+            print(msg_response_nok_preffix + season_1718  + msg_response_nok_suffix)
+
 # Function to create the PASS message
 def test_pass(tc_label, pass_string):
     print(separator)
