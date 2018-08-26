@@ -1,23 +1,29 @@
 import test_functions as tf
 import test_procedures as tp
+import messages as mg
+
 
 not_canadien = 0
 not_same_team = 0
+tc1_label = 'currentTeam'
+tc2_label = 'position'
 
 # Test 3a: Validate if currentTeam returned by people function is Montreal Canadiens
 
 print('Executing TEST CASE 3')
 
 if tp.t3_response_state_current == True:
-    print('Sending and receiving data')
+    print(mg.response_ok)
 else:
-    print('There is a problem with the currentTeam request')
+    print(mg.response_nok_suffix + tc1_label  + mg.response_nok_preffix)
+
 if tp.t3_collect_current == True:
-    print('Collecting players team')
+    print(mg.collect_ok)
 else:
-    print('There is a problem collecting team data')
+    print(mg.collect_nok_preffix + tc1_label + mg.collect_nok_suffix)
+
 if tp.t3_empty_value_current == True:
-    print('WARNING: there are some empty values in the API, maybe a bug?, replaced with N/A')
+    print(mg.empty_value)
 
 print('Validating TEST 3A')
 
@@ -38,15 +44,17 @@ else:
 # Are positions returned by teams are the same as people?
 
 if tp.t3_response_state_position == True:
-    print('Sending and receiving data')
+    print(mg.response_ok)
 else:
-    print('There is a problem with the position request')
+    print(mg.response_nok_suffix + tc2_label  + mg.response_nok_preffix)
+
 if tp.t3_collect_position == True:
-    print('Collecting players team')
+    print(mg.collect_ok)
 else:
-    print('There is a problem collecting position data')
+    print(mg.collect_nok_preffix + tc2_label + mg.collect_nok_suffix)
+
 if tp.t3_empty_value_position == True:
-    print('WARNING: there are some empty values in the API, maybe a bug?')
+    print(mg.empty_value)
 
 print('Validating TEST 3B')
 

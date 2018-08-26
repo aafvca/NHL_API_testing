@@ -1,35 +1,42 @@
 import test_functions as tf
 import test_procedures as tp
+import messages as mg
+
 
 improve_count = 0
 noImprove_count = 0
 counter = len(tp.roster_1617_points) - 1
+season_1617 = '2016-2017'
+season_1718 = '2017-2018'
 
 print('Executing TEST CASE 2')
 
 if tp.t2_response_state_1617 and tp.t2_response_state_1718 == True:
-    print('Sending and receiving data')
+    print(mg.response_ok)
 else:
     if tp.t2_response_state_1617 == False:
-        print('There is a problem with the 2016-2017 request')
+        print(mg.response_nok_suffix + season_1617  + mg.response_nok_preffix)
     else:
-        print('There is a problem with the 2017-2018 request')
+        print(mg.response_nok_suffix + season_1718  + mg.response_nok_preffix)
+
 if tp.t2_collect_1617 and tp.t2_collect_1718 == True:
-    print('Collecting players points')
+    print(mg.collect_ok)
 else:
     if tp.t2_collect_1617 == False:
-        print('There is a problem collecting 2016-2017 data')
+        print(mg.collect_nok_preffix + season_1617 + mg.collect_nok_suffix)
     else:
-        print('There is a problem collecting 2017-2018 data')
+        print(mg.collect_nok_preffix + season_1718 + mg.collect_nok_suffix)
+
 if tp.t2_empty_value_1617 or tp.t2_empty_value_1718 == True:
-    print('WARNING: there are some empty values in the API, maybe a bug?, replaced with N/A')
+    print(mg.empty_value)
+
 if tp.t2_calculate_1617 and tp.t2_calculate_1718 == True:
     print('Calculating points')
 else:
     if tp.t2_calculate_1617 == False:
-        print('There is a problem calculating 2016-2017 points')
+        print(mg.calculate_nok_preffix + season_1617 + mg.calculate_nok_suffix)
     else:
-        print('There is a problem calculating 2017-2018 points')
+        print(mg.calculate_nok_preffix + season_1718 + mg.calculate_nok_suffix)
 
 # Test2a Have all the players in the 2016-2017 and 2017-2018 roster improved?
 
