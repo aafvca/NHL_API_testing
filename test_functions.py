@@ -35,6 +35,7 @@ def create_list_multiple(url_prefix,id_list,url_suffix,api_exp):
 # Function to create a single from nested lists and check if some values are empty
 def single_from_nested(nested_list):
     single_list = []
+    empty = False
     for element in nested_list:
         if len(element) == 0:
             empty = True

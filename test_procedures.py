@@ -3,8 +3,6 @@ import json, jmespath
 from urllib.request import urlopen
 
 config = tf.load_config('config.json')
-#with open('config.json', 'r') as f:
-    #config = json.load(f)
 
 url_teams = config['DEFAULT']['TEAMS_URL']
 url_people = config['DEFAULT']['PEOPLE_URL']
@@ -55,3 +53,10 @@ nested_current_team = tf.create_list_multiple(url_people,roster_1718,'/',api_peo
 
 # Create a single list from nested
 people_current_team = tf.single_from_nested(nested_current_team)
+
+# Create a list with the player position using the teams function
+teams_position = api_teams_position.search(roster_data_1718)
+
+# Create a list with the player position using the people function
+nested_people_position = tf.create_list_multiple(url_people,roster_1718,'/',api_people_position)
+people_position = tf.single_from_nested(nested_people_position)
