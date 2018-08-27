@@ -56,7 +56,7 @@ tf.response_state(t2_calculate_1617, t2_calculate_1718, mg.calculate_ok, mg.calc
 
 print('Validating ' + TC2A_label)
 
-log_info = {'players in both': players_in_both, 'roster points 1716': roster_1617_points, 'roster points 1718': roster_1718_points, 'team points 1617': team_points_1617, 'team points 1718': team_points_1718}
+log_info = {'roster points 1716': roster_1617_points, 'roster points 1718': roster_1718_points, 'team points 1617': team_points_1617, 'team points 1718': team_points_1718}
 
 counter = len(roster_1617_points) - 1
 

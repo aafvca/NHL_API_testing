@@ -44,10 +44,9 @@ def single_from_nested(nested_list):
 def create_list_multiple(url_prefix,id_list,url_suffix,api_exp):
     stat_list = []
     for player in id_list:
-        print(url_prefix + str(player) + url_suffix)
+        #print(url_prefix + str(player) + url_suffix)
         data, response_state = get_response(url_prefix + str(player) + url_suffix)
         stat_list.append(api_exp.search(data))
-        print(stat_list)
     single_list, empty = single_from_nested(stat_list)
     executed = True
     return single_list, empty, executed, response_state

@@ -39,7 +39,7 @@ if t1_found_players == True:
 print('Validating ' + TC1_label)
 
 #Log and Test Case validation info
-log_info = {'roster 2016-2017': roster_1617, 'roster 2017-2018': roster_1718, 'players in both seasons' : players_in_both}
+log_info = log_info = {'roster 2016-2017': roster_1617, 'roster 2017-2018': roster_1718, 'players in both seasons' : players_in_both}
 tpass_msg = str(len(players_in_both)) + ' players were in both seasons'
 tfail_msg = 'Less than 10 players ere in both seasons'
 

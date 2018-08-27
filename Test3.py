@@ -5,7 +5,6 @@ import jmespath
 
 config = tf.load_config('config.json')
 
-#log_info = {'currentTeam from people': people_current_team, 'positions from team': teams_position, 'positions from people': people_position }
 not_canadien = 0
 not_same_team = 0
 url_people = config['DEFAULT']['PEOPLE_URL']
@@ -21,6 +20,7 @@ t3a_fail_msg = 'Some players have different or no team in people currentTeam'
 TC3B_label = 'Test_Case_3B'
 t3b_pass_msg = 'Both functions showed the same position for every player'
 t3b_fail_msg = 'There are differences in positions between the two functions'
+s = '/'
 
 # Test 3a: Validate if currentTeam returned by people function is Montreal Canadiens
 
@@ -32,11 +32,10 @@ tf.response_state_single(t3_response_state_1718, mg.response_ok, mg.response_nok
 
 print('Collecting player IDs')
 roster_1718 = tp.roster_1718(roster_data_1718)
-print(roster_1718)
 
 print('Collecting info from people currentTeam')
 
-people_current_team, t3_empty_value_current, t3_collect_current, t3_response_state_current  = tp.people_current_team(url_people,roster_1718,'/',api_people_currentTeam)
+people_current_team, t3_empty_value_current, t3_collect_current, t3_response_state_current  = tp.people_current_team(url_people,roster_1718,s,api_people_currentTeam)
 
 tf.response_state_single(t3_collect_current, mg.collect_ok, mg.collect_nok_preffix, mg.collect_nok_suffix, tc1_msg_label)
 
@@ -45,13 +44,15 @@ tf.empty_value_single(t3_empty_value_current)
 
 print('Validating ' + TC3A_label)
 
+log_info1 = {'currentTeam from people': people_current_team }
+
 for player in people_current_team:
     if 'Montréal Canadiens' not in player:
         not_canadien = not_canadien + 1
 
 if not_canadien != 0:
     tf.test_fail(TC3A_label, t3a_fail_msg)
-    tf.log_creation(TC3A_label,log_info)
+    tf.log_creation(TC3A_label,log_info1)
 else:
     tf.test_pass(TC3A_label, t3b_pass_msg)
     #tf.log_creation(TC3A_label,log_info)
@@ -75,6 +76,8 @@ tf.empty_value_single(t3_empty_value_position)
 
 print('Validating ' + TC3B_label)
 
+log_info2 = {'positions from team': teams_position, 'positions from people': people_position }
+
 counter = len(teams_position) - 1
 
 while counter >= 0:
@@ -87,4 +90,4 @@ if not_same_team == 0:
     #tf.log_creation(TC3B_label,log_info)
 else:
     tf.test_fail(TC3B_label, t3b_fail_msg)
-    tf.log_creation(TC3B_label,log_info)
+    tf.log_creation(TC3B_label,log_info2)

@@ -55,6 +55,7 @@ def team_points_1718(roster_1718_points):
 # Creates a list based in the team
 def people_current_team(url_people,roster_1718,key,api_people_currentTeam):
     people_current_team, t3_empty_value_current, t3_collect_current, t3_response_state_current  = tf.create_list_multiple(url_people,roster_1718,key,api_people_currentTeam)
+    return people_current_team, t3_empty_value_current, t3_collect_current, t3_response_state_current
 
 # Create a list with the player position using the teams function
 #def teams_position(roster_data_1718):
@@ -63,3 +64,4 @@ def people_current_team(url_people,roster_1718,key,api_people_currentTeam):
 # Create a list with the player position using the people function
 def people_position(url_people,roster_1718,key,api_people_position):
     people_position, t3_empty_value_position, t3_collect_position, t3_response_state_position = tf.create_list_multiple(url_people,roster_1718,key,api_people_position)
+    return people_position, t3_empty_value_position, t3_collect_position, t3_response_state_position
