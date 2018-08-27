@@ -112,7 +112,7 @@ def calculate_team_points(points_list):
 #       msg_response_nok_preffix, msg_response_nok_suffix, tc_message_label: Will build a failure message
 # Output:
 #       A printout to show the response state is successful or not
-def response_state_single(response_state1, msg_response_ok,msg_response_nok_preffix, msg_response_nok_suffix, tc_message_label):
+def response_state(response_state1, msg_response_ok,msg_response_nok_preffix, msg_response_nok_suffix, tc_message_label):
     if response_state1 == True:
         print(mg.response_ok)
     else:
@@ -139,7 +139,7 @@ def response_state_single(response_state1, msg_response_ok,msg_response_nok_pref
 #       empty1: True or False from create_list_multiple function
 # Output:
 #       mg.empty_value: Message to WARN about empty values
-def empty_value_single(empty1):
+def empty_value(empty1):
     if empty1 == True:
         print(mg.empty_value)
 
