@@ -38,13 +38,10 @@ roster_1718 = tp.roster_1718(roster_data_1718)
 
 print('Finding players in both seasons')
 players_in_both, t2_found_players = tp.players_in_both(roster_1617,roster_1718)
-print(players_in_both)
 
 print('Collecting players points')
 roster_1617_points, t2_empty_value_1617, t2_collect_1617, t2_response_state_1617 = tp.roster_1617_points(url_people,players_in_both,url_stats_1617,api_points)
-print(roster_1617_points)
 roster_1718_points, t2_empty_value_1718, t2_collect_1718, t2_response_state_1718 = tp.roster_1718_points(url_people,players_in_both,url_stats_1718,api_points)
-print(roster_1718_points)
 
 tf.response_state(t2_collect_1617, t2_collect_1718, mg.collect_ok, mg.collect_nok_preffix, mg.collect_nok_suffix, season_1617, season_1718)
 

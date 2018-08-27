@@ -4,7 +4,7 @@ response_ok = 'Sending and receiving data'
 response_nok_preffix = 'There is a problem with the'
 response_nok_suffix = 'request'
 
-collect_ok = 'Collecting players points'
+collect_ok = 'Collecting players information'
 collect_nok_preffix = 'There is a problem collecting'
 collect_nok_suffix = 'data'
 

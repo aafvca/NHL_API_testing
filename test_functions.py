@@ -44,9 +44,10 @@ def single_from_nested(nested_list):
 def create_list_multiple(url_prefix,id_list,url_suffix,api_exp):
     stat_list = []
     for player in id_list:
-        #print(url_prefix + str(player) + url_suffix)
+        print(url_prefix + str(player) + url_suffix)
         data, response_state = get_response(url_prefix + str(player) + url_suffix)
         stat_list.append(api_exp.search(data))
+        print(stat_list)
     single_list, empty = single_from_nested(stat_list)
     executed = True
     return single_list, empty, executed, response_state
@@ -60,6 +61,13 @@ def calculate_team_points(points_list):
     executed = True
     return number_of_points, executed
 
+# Function to verify the response message in one GET requests and send ok/not ok message
+def response_state_single(response_state1, msg_response_ok,msg_response_nok_preffix, msg_response_nok_suffix, tc_message_label):
+    if response_state1 == True:
+        print(mg.response_ok)
+    else:
+        print(mg.response_nok_suffix + tc_message_label  + mg.response_nok_preffix)
+
 # Function to verify the response message in two GET requests and send ok/not ok message
 def response_state(response_state1, response_state2, msg_response_ok, msg_response_nok_preffix, msg_response_nok_suffix, season1, season2):
     if response_state1 and response_state2 == True:
@@ -68,7 +76,12 @@ def response_state(response_state1, response_state2, msg_response_ok, msg_respon
         if response_state1 == False:
             print(msg_response_nok_preffix + season1  + msg_response_nok_suffix)
         else:
-            print(msg_response_nok_preffix + season_1718  + msg_response_nok_suffix)
+            print(msg_response_nok_preffix + season2  + msg_response_nok_suffix)
+
+# Function to find empty values in the json response in one message
+def empty_value_single(empty1):
+    if empty1 == True:
+        print(mg.empty_value)
 
 # Function to find empty values in the json response in two messages
 def empty_value(empty1, empty2):
