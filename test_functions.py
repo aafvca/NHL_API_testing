@@ -118,22 +118,6 @@ def response_state(response_state1, msg_response_ok,msg_response_nok_preffix, ms
     else:
         print(mg.response_nok_suffix + tc_message_label  + mg.response_nok_preffix)
 
-# Function to read the response_state from two messagea and create a comment if successful or not
-# Input:
-#       response_state1 and response_state2: True if successful False if unsuccessful
-#       msg_response_ok: Message to send if response_state is successfull
-#       msg_response_nok_preffix, msg_response_nok_suffix, season1, season2: Will build a failure message if the state is unsuccessful
-# Output:
-#       A printout to show the response state is successful or not
-#def response_state(response_state1, response_state2, msg_response_ok, msg_response_nok_preffix, msg_response_nok_suffix, season1, season2):
-#    if response_state1 and response_state2 == True:
-#        print(msg_response_ok)
-#    else:
-#        if response_state1 == False:
-#            print(msg_response_nok_preffix + season1  + msg_response_nok_suffix)
-#        else:
-#            print(msg_response_nok_preffix + season2  + msg_response_nok_suffix)
-
 # Function to WARN about empty values in the json response
 # Input:
 #       empty1: True or False from create_list_multiple function
@@ -142,11 +126,6 @@ def response_state(response_state1, msg_response_ok,msg_response_nok_preffix, ms
 def empty_value(empty1):
     if empty1 == True:
         print(mg.empty_value)
-
-# Function to find empty values in the json response in two messages
-#def empty_value(empty1, empty2):
-#    if empty1 or empty2 == True:
-#        print(mg.empty_value)
 
 # Function to create the PASS message in TC's
 # Input:
