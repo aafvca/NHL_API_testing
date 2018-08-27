@@ -30,7 +30,7 @@ There are two ways to run the test scripts included
 
 Logfiles will be generated for the failed test cases, it will include some variable information
 
-The logfile names are "Test_Case_<number>.log"
+The logfile names are "Test_Case_(tcId).log"
 
 # Test Case 1: A stable team (Test1.py)
 The purpose of this Test Case is to verify if the number of players in both 2016-2017 and 2017-2018 rosters are at least 10
