@@ -25,7 +25,7 @@ The two API functions used are:
 # How to execute the code
 There are two ways to run the test scripts included
 
-- Individually: Use "python3 Test[1-3].py", for example: "python Test1.py"
+- Individually: Use "python3 Test[1-3].py", for example: "python3 Test1.py"
 - In a suite (all): Use "python3 Test_Suite.py"
 
 Logfiles will be generated for the failed test cases, it will include some variable information
