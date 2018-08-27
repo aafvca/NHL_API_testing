@@ -1,5 +1,4 @@
 
-
 response_ok = 'Sending and receiving data'
 response_nok_preffix = 'There is a problem with the'
 response_nok_suffix = 'request'
@@ -26,5 +25,5 @@ tc31_msg_label = 'currentTeam'
 tc32_msg_label = 'position'
 t3a_pass = 'All players have Montréal Canadiens as team'
 t3a_fail = 'Some players have different or no team in people currentTeam'
-t3b_pass = 'Both functions showed the same position for every player'
+t3b_pass = 'Both functions show the same position for every player'
 t3b_fail = 'There are differences in positions between the two functions'
