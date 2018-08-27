@@ -11,7 +11,7 @@ This repo include 3 test scripts which will be described further.
 # Prerequisites
 In order to execute the test scripts you need:
 
-- Python3
+- Python3 (https://www.python.org/download/releases/3.0/)
 - jmespath (http://jmespath.org/)
 
 Why jmespath? The API is based in json messages and I found that using jmespath is very simple to gather the data required 
