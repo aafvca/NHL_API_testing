@@ -1,3 +1,4 @@
+import sys
 import test_functions as tf
 import test_procedures as tp
 import messages as mg
@@ -5,6 +6,7 @@ import jmespath
 
 config = tf.load_config('config.json')
 
+suite = config['DEFAULT']['SUITE']
 url_teams = config['DEFAULT']['TEAMS_URL']
 url_people = config['DEFAULT']['PEOPLE_URL']
 url_stats_1617 = config['TEST2']['MTL_STATS_1617']
@@ -19,6 +21,12 @@ season_1617 = '2016-2017'
 season_1718 = '2017-2018'
 TC2A_label = 'Test_Case_2A'
 TC2B_label = 'Test_Case_2B'
+t_pass = config['DEFAULT']['TEST PASS']
+t_fail = config['DEFAULT']['TEST FAIL']
+t_noexec = config['TEST2']['TEST NOT EXECUTED']
+
+if sys.argv[0] == "Test_Suite.py":
+    suite = 'True'
 
 print('Executing ' + TC2A_label)
 
@@ -66,8 +74,12 @@ while counter >= 0:
 if noImprove_count > 0:
     tf.test_fail(TC2A_label, str(noImprove_count) + mg.t2a_fail)
     tf.log_creation(TC2A_label,log_info)
+    t_fail = t_fail + 1
+    t_noexec = t_noexec - 1
 else:
     tf.test_pass(TC2A_label, mg.t2a_pass)
+    t_pass = t_pass + 1
+    t_noexec = t_noexec - 1
     #tf.log_creation(TC1_label,log_info)
 
 #Test2b Has the team improved?
@@ -76,7 +88,14 @@ print('Validating ' + TC2B_label)
 
 if team_points_1617 < team_points_1718:
     tf.test_pass(TC2B_label, mg.t2b_pass)
+    t_pass = t_pass + 1
+    t_noexec = t_noexec - 1
     #tf.log_creation(TC1_label,log_info)
 else:
     tf.test_fail(TC2B_label, mg.t2b_fail)
     tf.log_creation(TC2B_label,log_info)
+    t_fail = t_fail + 1
+    t_noexec = t_noexec - 1
+
+if suite == 'False':
+    tf.test_summary(t_pass,t_fail,t_noexec)

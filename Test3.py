@@ -1,9 +1,11 @@
+import sys
 import test_functions as tf
 import test_procedures as tp
 import messages as mg
 import jmespath
 
 config = tf.load_config('config.json')
+suite = config['DEFAULT']['SUITE']
 
 not_canadien = 0
 not_same_team = 0
@@ -16,7 +18,12 @@ tc1_msg_label = 'currentTeam'
 tc2_msg_label = 'position'
 TC3A_label = 'Test_Case_3A'
 TC3B_label = 'Test_Case_3B'
-s = '/'
+t_pass = config['DEFAULT']['TEST PASS']
+t_fail = config['DEFAULT']['TEST FAIL']
+t_noexec = config['TEST3']['TEST NOT EXECUTED']
+
+if sys.argv[0] == "Test_Suite.py":
+    suite = 'True'
 
 # Test 3a: Validate if currentTeam returned by people function is Montreal Canadiens
 
@@ -31,7 +38,7 @@ roster_1718 = tp.roster_1718(roster_data_1718)
 
 print('Collecting info from people currentTeam')
 
-people_current_team, t3_empty_value_current, t3_collect_current, t3_response_state_current  = tp.people_current_team(url_people,roster_1718,s,api_people_currentTeam)
+people_current_team, t3_empty_value_current, t3_collect_current, t3_response_state_current  = tp.people_current_team(url_people,roster_1718,'/',api_people_currentTeam)
 
 tf.response_state_single(t3_collect_current, mg.collect_ok, mg.collect_nok_preffix, mg.collect_nok_suffix, tc1_msg_label)
 
@@ -49,9 +56,13 @@ for player in people_current_team:
 if not_canadien != 0:
     tf.test_fail(TC3A_label, mg.t3a_fail)
     tf.log_creation(TC3A_label,log_info1)
+    t_fail = t_fail + 1
+    t_noexec = t_noexec - 1
 else:
     tf.test_pass(TC3A_label, mg.t3b_pass)
     #tf.log_creation(TC3A_label,log_info)
+    t_pass = t_pass + 1
+    t_noexec = t_noexec - 1
 
 # Test 3b
 # Are positions returned by teams are the same as people?
@@ -84,6 +95,13 @@ while counter >= 0:
 if not_same_team == 0:
     tf.test_pass(TC3B_label, mg.t3b_pass)
     #tf.log_creation(TC3B_label,log_info)
+    t_pass = t_pass + 1
+    t_noexec = t_noexec - 1
 else:
     tf.test_fail(TC3B_label, mg.t3b_fail)
     tf.log_creation(TC3B_label,log_info2)
+    t_fail = t_fail + 1
+    t_noexec = t_noexec - 1
+
+if suite == 'False':
+    tf.test_summary(t_pass,t_fail,t_noexec)

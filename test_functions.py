@@ -5,6 +5,7 @@ from urllib.request import urlopen
 print("Loading config ...")
 executed = False
 separator = '==============================================================================='
+ts_str = '================================ TEST SUMMARY ================================='
 
 # Function to load the config
 def load_config(config_file):
@@ -100,7 +101,14 @@ def test_fail(tc_label, fail_string):
     print('Check '+ tc_label+'.log for more info')
     print(separator)
 
-# Fnction to create logfiles for verification, needs a list of variables to collect
+# Function to generate a Test Summary printout at the end of execution
+def test_summary(t_pass,t_fail,t_noexec):
+    #print(separator)
+    print(ts_str)
+    print('PASS: ' + str(t_pass) + "\n" + "FAIL: " + str(t_fail) + "\n" + "NOT EXECUTED: " + str(t_noexec))
+    print(separator)
+
+# Function to create logfiles for verification, needs a list of variables to collect
 def log_creation(tc_label,log_info):
     f = open(tc_label + '.log', 'w+')
     for key,val in log_info.items():
