@@ -27,17 +27,17 @@ t2b_fail_msg = 'The team did not improve, more points in season 2016-2017'
 
 print('Executing ' + TC2A_label)
 
-roster_data_1617, t1_response_state_1617 = tp.roster_data_1617(url_team_1617)
-roster_data_1718, t1_response_state_1718 = tp.roster_data_1718(url_team_1617)
+roster_data_1617, t2_response_state_1617 = tp.roster_data_1617(url_team_1617)
+roster_data_1718, t2_response_state_1718 = tp.roster_data_1718(url_team_1718)
 
-tf.response_state(t1_response_state_1617, t1_response_state_1718, mg.response_ok, mg.response_nok_preffix, mg.response_nok_suffix, season_1617, season_1718)
+tf.response_state(t2_response_state_1617, t2_response_state_1718, mg.response_ok, mg.response_nok_preffix, mg.response_nok_suffix, season_1617, season_1718)
 
 print('Collecting player IDs')
 roster_1617 = tp.roster_1617(roster_data_1617)
 roster_1718 = tp.roster_1718(roster_data_1718)
 
 print('Finding players in both seasons')
-players_in_both, t1_found_players = tp.players_in_both(roster_1617,roster_1718)
+players_in_both, t2_found_players = tp.players_in_both(roster_1617,roster_1718)
 print(players_in_both)
 
 print('Collecting players points')
