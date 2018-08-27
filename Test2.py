@@ -33,7 +33,10 @@ print('Executing ' + TC2A_label)
 roster_data_1617, t2_response_state_1617 = tp.roster_data_1617(url_team_1617)
 roster_data_1718, t2_response_state_1718 = tp.roster_data_1718(url_team_1718)
 
-tf.response_state(t2_response_state_1617, t2_response_state_1718, mg.response_ok, mg.response_nok_preffix, mg.response_nok_suffix, season_1617, season_1718)
+#tf.response_state(t2_response_state_1617, t2_response_state_1718, mg.response_ok, mg.response_nok_preffix, mg.response_nok_suffix, season_1617, season_1718)
+tf.response_state(t2_response_state_1617, mg.response_ok, mg.response_nok_preffix, mg.response_nok_suffix, season_1617)
+tf.response_state(t2_response_state_1718, mg.response_ok, mg.response_nok_preffix, mg.response_nok_suffix, season_1718)
+
 
 print('Collecting player IDs')
 roster_1617 = tp.roster_1617(roster_data_1617)
@@ -46,14 +49,20 @@ print('Collecting players points')
 roster_1617_points, t2_empty_value_1617, t2_collect_1617, t2_response_state_1617 = tp.roster_1617_points(url_people,players_in_both,url_stats_1617,api_points)
 roster_1718_points, t2_empty_value_1718, t2_collect_1718, t2_response_state_1718 = tp.roster_1718_points(url_people,players_in_both,url_stats_1718,api_points)
 
-tf.response_state(t2_collect_1617, t2_collect_1718, mg.collect_ok, mg.collect_nok_preffix, mg.collect_nok_suffix, season_1617, season_1718)
+#tf.response_state(t2_collect_1617, t2_collect_1718, mg.collect_ok, mg.collect_nok_preffix, mg.collect_nok_suffix, season_1617, season_1718)
+tf.response_state(t2_collect_1617, mg.collect_ok, mg.collect_nok_preffix, mg.collect_nok_suffix, season_1617)
+tf.response_state(t2_collect_1718, mg.collect_ok, mg.collect_nok_preffix, mg.collect_nok_suffix, season_1718)
 
-tf.empty_value(t2_empty_value_1617, t2_empty_value_1718)
+#tf.empty_value(t2_empty_value_1617, t2_empty_value_1718) - Look
+tf.empty_value(t2_empty_value_1617)
+tf.empty_value(t2_empty_value_1718)
 
 team_points_1617, t2_calculate_1617 = tp.team_points_1617(roster_1617_points)
 team_points_1718, t2_calculate_1718 = tp.team_points_1617(roster_1718_points)
 
-tf.response_state(t2_calculate_1617, t2_calculate_1718, mg.calculate_ok, mg.calculate_nok_preffix, mg.calculate_nok_suffix, season_1617, season_1718)
+#tf.response_state(t2_calculate_1617, t2_calculate_1718, mg.calculate_ok, mg.calculate_nok_preffix, mg.calculate_nok_suffix, season_1617, season_1718)
+tf.response_state(t2_calculate_1617, mg.calculate_ok, mg.calculate_nok_preffix, mg.calculate_nok_suffix, season_1617)
+tf.response_state(t2_calculate_1718, mg.calculate_ok, mg.calculate_nok_preffix, mg.calculate_nok_suffix, season_1718)
 
 # Test2a Have all the players in the 2016-2017 and 2017-2018 roster improved?
 

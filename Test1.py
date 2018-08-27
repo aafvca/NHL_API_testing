@@ -26,7 +26,9 @@ print('Executing ' + TC1_label)
 roster_data_1617, t1_response_state_1617 = tp.roster_data_1617(url_team_1617)
 roster_data_1718, t1_response_state_1718 = tp.roster_data_1718(url_team_1718)
 
-tf.response_state(t1_response_state_1617, t1_response_state_1718, mg.response_ok, mg.response_nok_preffix, mg.response_nok_suffix, season_1617, season_1718)
+#tf.response_state(t1_response_state_1617, t1_response_state_1718, mg.response_ok, mg.response_nok_preffix, mg.response_nok_suffix, season_1617, season_1718)
+tf.response_state(t1_response_state_1617, mg.response_ok, mg.response_nok_preffix, mg.response_nok_suffix, season_1617)
+tf.response_state(t1_response_state_1718, mg.response_ok, mg.response_nok_preffix, mg.response_nok_suffix, season_1718)
 
 print('Collecting player IDs')
 roster_1617 = tp.roster_1617(roster_data_1617)
