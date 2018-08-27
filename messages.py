@@ -22,6 +22,8 @@ t2a_fail = ' players had more points in season 2016-2017'
 t2b_pass = 'The team improved from last season, more points in season 2017-2018'
 t2b_fail = 'The team did not improve, more points in season 2016-2017'
 
+tc31_msg_label = 'currentTeam'
+tc32_msg_label = 'position'
 t3a_pass = 'All players have Montréal Canadiens as team'
 t3a_fail = 'Some players have different or no team in people currentTeam'
 t3b_pass = 'Both functions showed the same position for every player'

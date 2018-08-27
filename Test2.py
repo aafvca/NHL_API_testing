@@ -15,15 +15,15 @@ url_team_1617 = config['DEFAULT']['TEAMS_URL'] + config['TEST1']['MTL_ROSTER_161
 url_team_1718 = config['DEFAULT']['TEAMS_URL'] + config['TEST1']['MTL_ROSTER_1718']
 api_teams_roster_id = jmespath.compile(config['TEST1']['API_TEAMS_ROSTER_ID'])
 api_points =jmespath.compile(config['TEST2']['API_POINTS'])
-improve_count = 0
-noImprove_count = 0
-season_1617 = '2016-2017'
-season_1718 = '2017-2018'
-TC2A_label = 'Test_Case_2A'
-TC2B_label = 'Test_Case_2B'
+season_1617 = config['DEFAULT']['SEASON 2016-2017']
+season_1718 = config['DEFAULT']['SEASON 2016-2017']
+TC2A_label = config['TEST2']['TC2A_LABEL']
+TC2B_label = config['TEST2']['TC2B_LABEL']
 t_pass = config['DEFAULT']['TEST PASS']
 t_fail = config['DEFAULT']['TEST FAIL']
 t_noexec = config['TEST2']['TEST NOT EXECUTED']
+improve_count = 0
+noImprove_count = 0
 
 if sys.argv[0] == "Test_Suite.py":
     suite = 'True'

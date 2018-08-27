@@ -2,6 +2,8 @@
   "DEFAULT": {
     "TEAMS_URL": "https://statsapi.web.nhl.com/api/v1/teams/",
     "PEOPLE_URL": "https://statsapi.web.nhl.com/api/v1/people/",
+    "SEASON 2016-2017": "2016-2017",
+    "SEASON 2017-2018": "2017-2018",
     "SUITE": "False",
     "TEST PASS": 0,
     "TEST FAIL": 0
@@ -10,6 +12,7 @@
     "MTL_ROSTER_1617": "/8?expand=team.roster&season=20162017",
     "MTL_ROSTER_1718": "/8?expand=team.roster&season=20172018",
     "API_TEAMS_ROSTER_ID": "teams[].roster.roster[].person.id",
+    "TC1_label": "Test_Case_1",
     "MIN_NUMBER_PLAYERS": 10,
     "TEST NOT EXECUTED": 1
   },
@@ -17,12 +20,16 @@
     "MTL_STATS_1617": "/stats?stats=statsSingleSeason&season=20162017",
     "MTL_STATS_1718": "/stats?stats=statsSingleSeason&season=20172018",
     "API_POINTS": "stats[].splits[].stat.points",
+    "TC2A_LABEL": "Test_Case_2A",
+    "TC2B_LABEL": "Test_Case_2B",
     "TEST NOT EXECUTED": 2
   },
   "TEST3": {
     "API_PEOPLE_CURRENT_TEAM": "people[].currentTeam.name",
     "API_TEAMS_POSITION": "teams[].roster.roster[].position.name",
     "API_PEOPLE_POSITION": "people[].primaryPosition.name",
+    "TC3A_LABEL": "Test_Case_3A",
+    "TC3B_LABEL": "Test_Case_3B",
     "TEST NOT EXECUTED": 2
   }
 }
