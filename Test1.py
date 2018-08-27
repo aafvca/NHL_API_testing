@@ -44,8 +44,8 @@ tpass_msg = str(len(players_in_both)) + ' players were in both seasons'
 tfail_msg = 'Less than 10 players ere in both seasons'
 
 if len(players_in_both) >= min_num_players:
-    tf.test_pass(TC1_label, tpass_msg)
+    tf.test_pass(TC1_label, str(len(players_in_both)) + mg.tc1_pass)
     #tf.log_creation(TC1_label,log_info)
 else:
-    tf.test_fail(TC1_label, tfail_msg)
+    tf.test_fail(TC1_label, mg.tc1_fail)
     tf.log_creation(TC1_label,log_info)

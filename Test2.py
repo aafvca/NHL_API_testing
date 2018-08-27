@@ -18,12 +18,7 @@ noImprove_count = 0
 season_1617 = '2016-2017'
 season_1718 = '2017-2018'
 TC2A_label = 'Test_Case_2A'
-t2a_pass_msg = 'All players improved'
-t2a_fail_msg = ' players had more points in season 2016-2017'
 TC2B_label = 'Test_Case_2B'
-t2b_pass_msg = 'The team improved from last season, more points in season 2017-2018'
-t2b_fail_msg = 'The team did not improve, more points in season 2016-2017'
-
 
 print('Executing ' + TC2A_label)
 
@@ -69,10 +64,10 @@ while counter >= 0:
     counter = counter - 1
 
 if noImprove_count > 0:
-    tf.test_fail(TC2A_label, str(noImprove_count) + t2a_fail_msg)
+    tf.test_fail(TC2A_label, str(noImprove_count) + mg.t2a_fail)
     tf.log_creation(TC2A_label,log_info)
 else:
-    tf.test_pass(TC2A_label, t2a_pass_msg)
+    tf.test_pass(TC2A_label, mg.t2a_pass)
     #tf.log_creation(TC1_label,log_info)
 
 #Test2b Has the team improved?
@@ -80,8 +75,8 @@ else:
 print('Validating ' + TC2B_label)
 
 if team_points_1617 < team_points_1718:
-    tf.test_pass(TC2B_label, t2b_pass_msg)
+    tf.test_pass(TC2B_label, mg.t2b_pass)
     #tf.log_creation(TC1_label,log_info)
 else:
-    tf.test_fail(TC2B_label, t2b_fail_msg)
+    tf.test_fail(TC2B_label, mg.t2b_fail)
     tf.log_creation(TC2B_label,log_info)

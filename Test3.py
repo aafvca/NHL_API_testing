@@ -15,11 +15,7 @@ url_team_1718 = config['DEFAULT']['TEAMS_URL'] + config['TEST1']['MTL_ROSTER_171
 tc1_msg_label = 'currentTeam'
 tc2_msg_label = 'position'
 TC3A_label = 'Test_Case_3A'
-t3a_pass_msg = 'All players have Montréal Canadiens as team'
-t3a_fail_msg = 'Some players have different or no team in people currentTeam'
 TC3B_label = 'Test_Case_3B'
-t3b_pass_msg = 'Both functions showed the same position for every player'
-t3b_fail_msg = 'There are differences in positions between the two functions'
 s = '/'
 
 # Test 3a: Validate if currentTeam returned by people function is Montreal Canadiens
@@ -51,10 +47,10 @@ for player in people_current_team:
         not_canadien = not_canadien + 1
 
 if not_canadien != 0:
-    tf.test_fail(TC3A_label, t3a_fail_msg)
+    tf.test_fail(TC3A_label, mg.t3a_fail)
     tf.log_creation(TC3A_label,log_info1)
 else:
-    tf.test_pass(TC3A_label, t3b_pass_msg)
+    tf.test_pass(TC3A_label, mg.t3b_pass)
     #tf.log_creation(TC3A_label,log_info)
 
 # Test 3b
@@ -86,8 +82,8 @@ while counter >= 0:
     counter = counter - 1
 
 if not_same_team == 0:
-    tf.test_pass(TC3B_label, t3b_pass_msg)
+    tf.test_pass(TC3B_label, mg.t3b_pass)
     #tf.log_creation(TC3B_label,log_info)
 else:
-    tf.test_fail(TC3B_label, t3b_fail_msg)
+    tf.test_fail(TC3B_label, mg.t3b_fail)
     tf.log_creation(TC3B_label,log_info2)
