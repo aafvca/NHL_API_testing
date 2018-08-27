@@ -25,55 +25,58 @@ t_noexec = config['TEST2']['TEST NOT EXECUTED']
 improve_count = 0
 noImprove_count = 0
 
+# Find out if this is a suite execution
 if sys.argv[0] == "Test_Suite.py":
     suite = 'True'
 
-print('Executing ' + TC2A_label)
+print('Executing TC2')
 
+# Collect roster information from seasons 2016-2017 and 2017-2018
 roster_data_1617, t2_response_state_1617 = tp.roster_data_1617(url_team_1617)
 roster_data_1718, t2_response_state_1718 = tp.roster_data_1718(url_team_1718)
 
-#tf.response_state(t2_response_state_1617, t2_response_state_1718, mg.response_ok, mg.response_nok_preffix, mg.response_nok_suffix, season_1617, season_1718)
 tf.response_state(t2_response_state_1617, mg.response_ok, mg.response_nok_preffix, mg.response_nok_suffix, season_1617)
 tf.response_state(t2_response_state_1718, mg.response_ok, mg.response_nok_preffix, mg.response_nok_suffix, season_1718)
 
-
+# Using the roster information obtain the playerIDs for further processing
 print('Collecting player IDs')
 roster_1617 = tp.roster_1617(roster_data_1617)
 roster_1718 = tp.roster_1718(roster_data_1718)
 
+# Look in both lists for matches
 print('Finding players in both seasons')
 players_in_both, t2_found_players = tp.players_in_both(roster_1617,roster_1718)
 
+# Obtain the points information for season 2016-2017 and 2017-2018
 print('Collecting players points')
 roster_1617_points, t2_empty_value_1617, t2_collect_1617, t2_response_state_1617 = tp.roster_1617_points(url_people,players_in_both,url_stats_1617,api_points)
 roster_1718_points, t2_empty_value_1718, t2_collect_1718, t2_response_state_1718 = tp.roster_1718_points(url_people,players_in_both,url_stats_1718,api_points)
 
-#tf.response_state(t2_collect_1617, t2_collect_1718, mg.collect_ok, mg.collect_nok_preffix, mg.collect_nok_suffix, season_1617, season_1718)
 tf.response_state(t2_collect_1617, mg.collect_ok, mg.collect_nok_preffix, mg.collect_nok_suffix, season_1617)
 tf.response_state(t2_collect_1718, mg.collect_ok, mg.collect_nok_preffix, mg.collect_nok_suffix, season_1718)
 
-#tf.empty_value(t2_empty_value_1617, t2_empty_value_1718) - Look
+# Locate empty values and replace with 'N/A'
 tf.empty_value(t2_empty_value_1617)
 tf.empty_value(t2_empty_value_1718)
 
+# Calculate the team points for both seasons
 team_points_1617, t2_calculate_1617 = tp.team_points_1617(roster_1617_points)
 team_points_1718, t2_calculate_1718 = tp.team_points_1617(roster_1718_points)
 
-#tf.response_state(t2_calculate_1617, t2_calculate_1718, mg.calculate_ok, mg.calculate_nok_preffix, mg.calculate_nok_suffix, season_1617, season_1718)
 tf.response_state(t2_calculate_1617, mg.calculate_ok, mg.calculate_nok_preffix, mg.calculate_nok_suffix, season_1617)
 tf.response_state(t2_calculate_1718, mg.calculate_ok, mg.calculate_nok_preffix, mg.calculate_nok_suffix, season_1718)
 
-# Test2a Have all the players in the 2016-2017 and 2017-2018 roster improved?
+# Test2a Have all the players in the 2016-2017 and 2017-2018 roster improved? Yes if they have more points in 2017-2018 season
 
 print('Validating ' + TC2A_label)
 
+#Log and Test Case validation info
 log_info = {'roster points 1716': roster_1617_points, 'roster points 1718': roster_1718_points, 'team points 1617': team_points_1617, 'team points 1718': team_points_1718}
 
 counter = len(roster_1617_points) - 1
 
 while counter >= 0:
-    if type(roster_1617_points[counter]) and type(roster_1718_points[counter])  == int: #Some goalies have no points
+    if type(roster_1617_points[counter]) and type(roster_1718_points[counter])  == int:
         if roster_1617_points[counter] < roster_1718_points[counter]:
             improve_count = improve_count + 1
         else:
@@ -91,7 +94,7 @@ else:
     t_noexec = t_noexec - 1
     #tf.log_creation(TC1_label,log_info)
 
-#Test2b Has the team improved?
+#Test2b Has the overall team improved? Yes if the team has more points in 2017-2018 season
 
 print('Validating ' + TC2B_label)
 
@@ -106,5 +109,6 @@ else:
     t_fail = t_fail + 1
     t_noexec = t_noexec - 1
 
+# Test summary will be executed if the TC is executed individually	
 if suite == 'False':
     tf.test_summary(t_pass,t_fail,t_noexec)
