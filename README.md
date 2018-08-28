@@ -80,7 +80,10 @@ During the execution of the test I found that both functions showed the same pos
 # Conclusion
 After the execution of this test cases I can conclude that the people function is not updated regularly, I found incorrect or sometimes no data
 for some players.
-The teams function seems to be in better shape but more testing is required
+The teams function seems to be in better shape but more testing is required, some of the tests that can be included are:
+
+- Invalid values in the requests
+- POST and DELETE requests to update the data structure
 
 # Appendix (File Description)
 
