@@ -25,16 +25,16 @@ if sys.argv[0] == "Test_Suite.py":
 print('Executing ' + TC1_label)
 
 # Collect roster information from seasons 2016-2017 and 2017-2018
-roster_data_1617, t1_response_state_1617 = tp.roster_data_1617(url_team_1617)
-roster_data_1718, t1_response_state_1718 = tp.roster_data_1718(url_team_1718)
+roster_data_1617, t1_response_state_1617 = tp.roster_data(url_team_1617)
+roster_data_1718, t1_response_state_1718 = tp.roster_data(url_team_1718)
 
 tf.response_state(t1_response_state_1617, mg.response_ok, mg.response_nok_preffix, mg.response_nok_suffix, season_1617)
 tf.response_state(t1_response_state_1718, mg.response_ok, mg.response_nok_preffix, mg.response_nok_suffix, season_1718)
 
 # Using the roster information obtain the playerIDs for further processing
 print('Collecting player IDs')
-roster_1617 = tp.roster_1617(roster_data_1617)
-roster_1718 = tp.roster_1718(roster_data_1718)
+roster_1617 = tp.roster_list(roster_data_1617)
+roster_1718 = tp.roster_list(roster_data_1718)
 
 # Look in both lists for matches
 print('Finding players in both seasons')
@@ -60,6 +60,6 @@ else:
     t_fail = t_fail + 1
     t_noexec = t_noexec - 1
 
-# Test summary will be executed if the TC is executed individually	
+# Test summary will be executed if the TC is executed individually
 if suite == 'False':
     tf.test_summary(t_pass,t_fail,t_noexec)

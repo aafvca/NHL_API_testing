@@ -28,13 +28,13 @@ if sys.argv[0] == "Test_Suite.py":
 print('Executing TC3')
 
 # Collect roster information from season 2017-2018
-roster_data_1718, t3_response_state_1718 = tp.roster_data_1718(url_team_1718)
+roster_data_1718, t3_response_state_1718 = tp.roster_data(url_team_1718)
 
 tf.response_state(t3_response_state_1718, mg.response_ok, mg.response_nok_preffix, mg.response_nok_suffix, mg.tc31_msg_label)
 
 # Using the roster information obtain the playerIDs for further processing
 print('Collecting player IDs')
-roster_1718 = tp.roster_1718(roster_data_1718)
+roster_1718 = tp.roster_list(roster_data_1718)
 
 # Obtain the current team info using the people function
 print('Collecting info from people currentTeam')
@@ -112,6 +112,6 @@ else:
     t_fail = t_fail + 1
     t_noexec = t_noexec - 1
 
-# Test summary will be executed if the TC is executed individually	
+# Test summary will be executed if the TC is executed individually
 if suite == 'False':
     tf.test_summary(t_pass,t_fail,t_noexec)
