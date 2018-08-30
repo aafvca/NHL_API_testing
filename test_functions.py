@@ -3,7 +3,6 @@ import messages as mg
 from urllib.request import urlopen
 
 print("Loading config ...")
-executed = False
 separator = '==============================================================================='
 ts_str = '================================ TEST SUMMARY ================================='
 
@@ -11,7 +10,7 @@ ts_str = '================================ TEST SUMMARY ========================
 # Input:
 # config_file:  The path and name of the configuration file to be loaded
 #               The defaullt path is the local directory
-#               The configuration file should be a json file    
+#               The configuration file should be a json file
 # Output:
 # The config file to be used as a json object
 def load_config(config_file):
@@ -49,7 +48,7 @@ def find_players(roster1,roster2):
 
 # Function to create a single from a nested list and checks if some list values are empty
 # It will write the empty values as N/A
-# Input: 
+# Input:
 #       nested_list: This is the nested list to convert to single list
 # Output:
 #       single_list: It returns a python single list
