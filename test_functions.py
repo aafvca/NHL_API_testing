@@ -132,7 +132,6 @@ def test_fail(tc_label, fail_string):
 # Input:
 #       t_pass: The number of TC's passed
 #       t_fail: The number of TC's failed
-#       t_noexec: The number of TC's not executed
 def test_summary(t_pass,t_fail):
     print(ts_str)
     print('PASS: ' + str(t_pass) + "\n" + "FAIL: " + str(t_fail))
