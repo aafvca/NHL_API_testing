@@ -1,6 +1,5 @@
-import json, jmespath
+import json, jmespath, requests
 import messages as mg
-from urllib.request import urlopen
 
 print("Loading config ...")
 separator = '==============================================================================='
@@ -24,10 +23,10 @@ def load_config(config_file):
 #       response: Is the BODY part of the GET response message, as a json object
 #       executed: A flag to acknowledge that the function was executed
 def get_response(url):
-    with urlopen(url) as response:
-        source = response.read()
-    response = json.loads(source)
-    return response
+    url_request = requests.get(url)
+    status_code = url_request.status_code
+    response = url_request.json()
+    return response, status_code
 
 # Function to find the players that belong to the same team in two different seasons
 # Input:
@@ -81,11 +80,10 @@ def single_from_nested(nested_list):
 def create_list_multiple(url_prefix,id_list,url_suffix,api_exp):
     stat_list = []
     for player in id_list:
-        #print(url_prefix + str(player) + url_suffix)
-        data = get_response(url_prefix + str(player) + url_suffix)
+        data, status_code = get_response(url_prefix + str(player) + url_suffix)
         stat_list.append(api_exp.search(data))
     single_list, empty = single_from_nested(stat_list)
-    return single_list, empty
+    return single_list, empty, status_code
 
 # This function adds all the values in the list, exclude N/A's
 # Input:

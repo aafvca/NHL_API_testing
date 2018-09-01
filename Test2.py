@@ -21,7 +21,6 @@ TC2A_label = config['TEST2']['TC2A_LABEL']
 TC2B_label = config['TEST2']['TC2B_LABEL']
 t_pass = config['DEFAULT']['TEST PASS']
 t_fail = config['DEFAULT']['TEST FAIL']
-t_noexec = config['TEST2']['TEST NOT EXECUTED']
 improve_count = 0
 noImprove_count = 0
 
@@ -32,9 +31,12 @@ if sys.argv[0] == "Test_Suite.py":
 print('Executing TC2')
 
 # Collect roster information from seasons 2016-2017 and 2017-2018
-roster_data_1617 = tp.roster_data(url_team_1617)
-roster_data_1718 = tp.roster_data(url_team_1718)
+roster_data_1617, status_code = tp.roster_data(url_team_1617)
+roster_data_1718, status_code = tp.roster_data(url_team_1718)
 
+# Validatating status_code = 200 OK
+if status_code != 200:
+    print('There is a problem with the GET response code')
 
 # Using the roster information obtain the playerIDs for further processing
 print('Collecting player IDs')
@@ -47,8 +49,12 @@ players_in_both = tp.players_in_both(roster_1617,roster_1718)
 
 # Obtain the points information for season 2016-2017 and 2017-2018
 print('Collecting players points')
-roster_1617_points, t2_empty_value_1617 = tp.roster_points(url_people,players_in_both,url_stats_1617,api_points)
-roster_1718_points, t2_empty_value_1718 = tp.roster_points(url_people,players_in_both,url_stats_1718,api_points)
+roster_1617_points, t2_empty_value_1617, status_code = tp.roster_points(url_people,players_in_both,url_stats_1617,api_points)
+roster_1718_points, t2_empty_value_1718, status_code = tp.roster_points(url_people,players_in_both,url_stats_1718,api_points)
+
+# Validatating status_code = 200 OK
+if status_code != 200:
+    print('There is a problem with the GET response code')
 
 # Locate empty values and replace with 'N/A'
 tf.empty_value(t2_empty_value_1617)
@@ -79,11 +85,9 @@ if noImprove_count > 0:
     tf.test_fail(TC2A_label, str(noImprove_count) + mg.t2a_fail)
     tf.log_creation(TC2A_label,log_info)
     t_fail = t_fail + 1
-    t_noexec = t_noexec - 1
 else:
     tf.test_pass(TC2A_label, mg.t2a_pass)
     t_pass = t_pass + 1
-    t_noexec = t_noexec - 1
     #tf.log_creation(TC1_label,log_info)
 
 #Test2b Has the overall team improved? Yes if the team has more points in 2017-2018 season
@@ -93,13 +97,11 @@ print('Validating ' + TC2B_label)
 if team_points_1617 < team_points_1718:
     tf.test_pass(TC2B_label, mg.t2b_pass)
     t_pass = t_pass + 1
-    t_noexec = t_noexec - 1
     #tf.log_creation(TC1_label,log_info)
 else:
     tf.test_fail(TC2B_label, mg.t2b_fail)
     tf.log_creation(TC2B_label,log_info)
     t_fail = t_fail + 1
-    t_noexec = t_noexec - 1
 
 # Test summary will be executed if the TC is executed individually
 if suite == 'False':

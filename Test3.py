@@ -16,7 +16,6 @@ TC3A_label = config['TEST3']['TC3A_LABEL']
 TC3B_label = config['TEST3']['TC3B_LABEL']
 t_pass = config['DEFAULT']['TEST PASS']
 t_fail = config['DEFAULT']['TEST FAIL']
-t_noexec = config['TEST3']['TEST NOT EXECUTED']
 not_canadien = 0
 not_same_team = 0
 
@@ -28,7 +27,11 @@ if sys.argv[0] == "Test_Suite.py":
 print('Executing TC3')
 
 # Collect roster information from season 2017-2018
-roster_data_1718 = tp.roster_data(url_team_1718)
+roster_data_1718, status_code = tp.roster_data(url_team_1718)
+
+# Validatating status_code = 200 OK
+if status_code != 200:
+    print('There is a problem with the GET response code')
 
 # Using the roster information obtain the playerIDs for further processing
 print('Collecting player IDs')
@@ -37,7 +40,11 @@ roster_1718 = tp.roster_list(roster_data_1718)
 # Obtain the current team info using the people function
 print('Collecting info from people currentTeam')
 
-people_current_team, t3_empty_value_current  = tp.people_current_team(url_people,roster_1718,'/',api_people_currentTeam)
+people_current_team, t3_empty_value_current, status_code  = tp.people_current_team(url_people,roster_1718,'/',api_people_currentTeam)
+
+# Validatating status_code = 200 OK
+if status_code != 200:
+    print('There is a problem with the GET response code')
 
 # Locate empty values and replace with 'N/A'
 print('Looking for empty values')
@@ -50,7 +57,11 @@ tf.empty_value(t3_empty_value_current)
 print('Finding position using teams function')
 teams_position = api_teams_position.search(roster_data_1718)
 
-people_position, t3_empty_value_position = tp.people_position(url_people,roster_1718,'/',api_people_position)
+people_position, t3_empty_value_position, status_code = tp.people_position(url_people,roster_1718,'/',api_people_position)
+
+# Validatating status_code = 200 OK
+if status_code != 200:
+    print('There is a problem with the GET response code')
 
 # Obtain the position info using the people function
 print('Finding position using people function')
@@ -73,12 +84,10 @@ if not_canadien != 0:
     tf.test_fail(TC3A_label, mg.t3a_fail)
     tf.log_creation(TC3A_label,log_info1)
     t_fail = t_fail + 1
-    t_noexec = t_noexec - 1
 else:
     tf.test_pass(TC3A_label, mg.t3b_pass)
     #tf.log_creation(TC3A_label,log_info)
     t_pass = t_pass + 1
-    t_noexec = t_noexec - 1
 
 print('Validating ' + TC3B_label)
 
@@ -98,12 +107,10 @@ if not_same_team == 0:
     tf.test_pass(TC3B_label, mg.t3b_pass)
     #tf.log_creation(TC3B_label,log_info)
     t_pass = t_pass + 1
-    t_noexec = t_noexec - 1
 else:
     tf.test_fail(TC3B_label, mg.t3b_fail)
     tf.log_creation(TC3B_label,log_info2)
     t_fail = t_fail + 1
-    t_noexec = t_noexec - 1
 
 # Test summary will be executed if the TC is executed individually
 if suite == 'False':

@@ -16,7 +16,6 @@ season_1718 = config['DEFAULT']['SEASON 2016-2017']
 TC1_label = config['TEST1']['TC1_label']
 t_pass = config['DEFAULT']['TEST PASS']
 t_fail = config['DEFAULT']['TEST FAIL']
-t_noexec = config['TEST1']['TEST NOT EXECUTED']
 
 # Find out if this is a suite execution
 if sys.argv[0] == "Test_Suite.py":
@@ -25,8 +24,12 @@ if sys.argv[0] == "Test_Suite.py":
 print('Executing ' + TC1_label)
 
 # Collect roster information from seasons 2016-2017 and 2017-2018
-roster_data_1617 = tp.roster_data(url_team_1617)
-roster_data_1718 = tp.roster_data(url_team_1718)
+roster_data_1617, status_code = tp.roster_data(url_team_1617)
+roster_data_1718, status_code = tp.roster_data(url_team_1718)
+
+# Validatating status_code = 200 OK
+if status_code != 200:
+    print('There is a problem with the GET response code')
 
 # Using the roster information obtain the playerIDs for further processing
 print('Collecting player IDs')
@@ -47,12 +50,10 @@ if len(players_in_both) >= min_num_players:
     tf.test_pass(TC1_label, str(len(players_in_both)) + mg.tc1_pass)
     #tf.log_creation(TC1_label,log_info)
     t_pass = t_pass + 1
-    t_noexec = t_noexec - 1
 else:
     tf.test_fail(TC1_label, mg.tc1_fail)
     tf.log_creation(TC1_label,log_info)
     t_fail = t_fail + 1
-    t_noexec = t_noexec - 1
 
 # Test summary will be executed if the TC is executed individually
 if suite == 'False':
