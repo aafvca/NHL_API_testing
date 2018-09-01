@@ -27,8 +27,7 @@ def get_response(url):
     with urlopen(url) as response:
         source = response.read()
     response = json.loads(source)
-    executed = True
-    return response, executed
+    return response
 
 # Function to find the players that belong to the same team in two different seasons
 # Input:
@@ -43,8 +42,7 @@ def find_players(roster1,roster2):
     for player in roster1:
         if player in roster2:
             player_list.append(player)
-    executed = True
-    return player_list, executed
+    return player_list
 
 # Function to create a single from a nested list and checks if some list values are empty
 # It will write the empty values as N/A
@@ -84,11 +82,10 @@ def create_list_multiple(url_prefix,id_list,url_suffix,api_exp):
     stat_list = []
     for player in id_list:
         #print(url_prefix + str(player) + url_suffix)
-        data, response_state = get_response(url_prefix + str(player) + url_suffix)
+        data = get_response(url_prefix + str(player) + url_suffix)
         stat_list.append(api_exp.search(data))
     single_list, empty = single_from_nested(stat_list)
-    executed = True
-    return single_list, empty, executed, response_state
+    return single_list, empty
 
 # This function adds all the values in the list, exclude N/A's
 # Input:
@@ -101,21 +98,7 @@ def calculate_team_points(points_list):
     for points in points_list:
         if type(points) == int:
             number_of_points = number_of_points + points
-    executed = True
-    return number_of_points, executed
-
-# Function to read the response_state from one message and create a comment if successful or not
-# Input:
-#       response_state1: True if successful False if unsuccessful
-#       msg_response_ok: Message to send if response_state is successfull
-#       msg_response_nok_preffix, msg_response_nok_suffix, tc_message_label: Will build a failure message
-# Output:
-#       A printout to show the response state is successful or not
-def response_state(response_state1, msg_response_ok,msg_response_nok_preffix, msg_response_nok_suffix, tc_message_label):
-    if response_state1 == True:
-        print(mg.response_ok)
-    else:
-        print(mg.response_nok_suffix + tc_message_label  + mg.response_nok_preffix)
+    return number_of_points
 
 # Function to WARN about empty values in the json response
 # Input:

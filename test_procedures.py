@@ -14,8 +14,8 @@ api_teams_roster_id = jmespath.compile(config['TEST1']['API_TEAMS_ROSTER_ID'])
 #       roster_data_1617: Roster information for season 2016-2017 and 2017-2018
 #       response_state_1617: Flah to indicate the function response_state was executed
 def roster_data(url_team):
-    roster_data, response_state = tf.get_response(url_team)
-    return roster_data, response_state
+    roster_data = tf.get_response(url_team)
+    return roster_data
 
 # Creates a list based in roster id for seasons 2016-2017 and 2017-2018
 # Input:
@@ -33,8 +33,8 @@ def roster_list(roster_data):
 #       players_in_both: A python list with the ID's that are in both lists
 #       found_players: A flag to acknowledge that the function was executed
 def players_in_both(roster_1, roster_2):
-    players_in_both, found_players = tf.find_players(roster_1, roster_2)
-    return players_in_both, found_players
+    players_in_both = tf.find_players(roster_1, roster_2)
+    return players_in_both
 
 # For TEST2
 # Reusing players_in_both from TEST1 to collect the points information from people function
@@ -46,8 +46,8 @@ def players_in_both(roster_1, roster_2):
 #       collect_1617, response_state_1617: Flags to acknowledge that the function was executed
 #       empty_value_1617: An indicator for empty values in the lists
 def roster_points(url_people,players_in_both,url_stats,api_points):
-    roster_points, empty_value, collect, response_state = tf.create_list_multiple(url_people,players_in_both,url_stats,api_points)
-    return roster_points, empty_value, collect, response_state
+    roster_points, empty_value = tf.create_list_multiple(url_people,players_in_both,url_stats,api_points)
+    return roster_points, empty_value
 
 # Calculate team points based in the roster_points
 # Input:
@@ -56,8 +56,8 @@ def roster_points(url_people,players_in_both,url_stats,api_points):
 #       team_points_: A total of the players points in a season
 #       calculate_*: Flag to acknowledge that the function was executed
 def team_points(roster_points):
-    team_points, calculate = tf.calculate_team_points(roster_points)
-    return team_points, calculate
+    team_points = tf.calculate_team_points(roster_points)
+    return team_points
 
 # For TEST3
 # Using roster_1718 to find if there is a difference between teams and people functions
@@ -72,8 +72,8 @@ def team_points(roster_points):
 #       t3_collect_current, t3_response_state_current: Flags to acknowledge that the function was executed
 #       t3_empty_value_current: An indicator for empty values in the lists
 def people_current_team(url_people,roster_1718,key,api_people_currentTeam):
-    people_current_team, t3_empty_value_current, t3_collect_current, t3_response_state_current  = tf.create_list_multiple(url_people,roster_1718,key,api_people_currentTeam)
-    return people_current_team, t3_empty_value_current, t3_collect_current, t3_response_state_current
+    people_current_team, t3_empty_value_current  = tf.create_list_multiple(url_people,roster_1718,key,api_people_currentTeam)
+    return people_current_team, t3_empty_value_current
 
 # Create a list with the player position using the people function
 # Input:
@@ -84,5 +84,5 @@ def people_current_team(url_people,roster_1718,key,api_people_currentTeam):
 #       t3_collect_position, t3_response_state_position: Flags to acknowledge that the function was executed
 #       t3_empty_value_position: An indicator for empty values in the lists
 def people_position(url_people,roster_1718,key,api_people_position):
-    people_position, t3_empty_value_position, t3_collect_position, t3_response_state_position = tf.create_list_multiple(url_people,roster_1718,key,api_people_position)
-    return people_position, t3_empty_value_position, t3_collect_position, t3_response_state_position
+    people_position, t3_empty_value_position = tf.create_list_multiple(url_people,roster_1718,key,api_people_position)
+    return people_position, t3_empty_value_position

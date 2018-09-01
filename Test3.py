@@ -28,9 +28,7 @@ if sys.argv[0] == "Test_Suite.py":
 print('Executing TC3')
 
 # Collect roster information from season 2017-2018
-roster_data_1718, t3_response_state_1718 = tp.roster_data(url_team_1718)
-
-tf.response_state(t3_response_state_1718, mg.response_ok, mg.response_nok_preffix, mg.response_nok_suffix, mg.tc31_msg_label)
+roster_data_1718 = tp.roster_data(url_team_1718)
 
 # Using the roster information obtain the playerIDs for further processing
 print('Collecting player IDs')
@@ -39,9 +37,7 @@ roster_1718 = tp.roster_list(roster_data_1718)
 # Obtain the current team info using the people function
 print('Collecting info from people currentTeam')
 
-people_current_team, t3_empty_value_current, t3_collect_current, t3_response_state_current  = tp.people_current_team(url_people,roster_1718,'/',api_people_currentTeam)
-
-tf.response_state(t3_collect_current, mg.collect_ok, mg.collect_nok_preffix, mg.collect_nok_suffix, mg.tc31_msg_label)
+people_current_team, t3_empty_value_current  = tp.people_current_team(url_people,roster_1718,'/',api_people_currentTeam)
 
 # Locate empty values and replace with 'N/A'
 print('Looking for empty values')
@@ -54,13 +50,10 @@ tf.empty_value(t3_empty_value_current)
 print('Finding position using teams function')
 teams_position = api_teams_position.search(roster_data_1718)
 
-people_position, t3_empty_value_position, t3_collect_position, t3_response_state_position = tp.people_position(url_people,roster_1718,'/',api_people_position)
-
-tf.response_state(t3_response_state_position, mg.response_ok, mg.response_nok_preffix, mg.response_nok_suffix, mg.tc32_msg_label)
+people_position, t3_empty_value_position = tp.people_position(url_people,roster_1718,'/',api_people_position)
 
 # Obtain the position info using the people function
 print('Finding position using people function')
-tf.response_state(t3_collect_position, mg.collect_ok, mg.collect_nok_preffix, mg.collect_nok_suffix, mg.tc32_msg_label)
 
 # Locate empty values and replace with 'N/A'
 print('Looking for empty values')
